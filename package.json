@@ -1,0 +1,100 @@
+{
+  "name": "@byte-code/aws-integration-testing",
+  "version": "0.0.0-development",
+  "description": "Test utils for integration testing on AWS",
+  "keywords": [
+    "aws",
+    "test",
+    "integration-test"
+  ],
+  "author": "Alessandro Palumbo <apalumbo@byte-code.com>",
+  "homepage": "https://github.com/byte-code/aws-integration-testing#readme",
+  "license": "LGPL",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "semantic-release": "semantic-release"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byte-code/aws-integration-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byte-code/aws-integration-testing/issues"
+  },
+  "jest": {
+    "runner": "groups",
+    "verbose": true,
+    "collectCoverage": true,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/__tests__/.*(test|spec)\\.((t|j)sx?)$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist/",
+      "<rootDir>/node_modules/"
+    ],
+    "moduleNameMapper": {},
+    "moduleDirectories": [
+      "node_modules",
+      "lib"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "semantic-release": "^17.3.4",
+    "@types/uuid": "^7.0.3"
+  },
+  "dependencies": {
+    "@types/dockerode": "^2.5.28",
+    "testcontainers": "^2.8.1",
+    "typescript": "^3.8.3"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "next"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ]
+  }
+}

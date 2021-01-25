@@ -1,0 +1,2 @@
+
+export { LocalStackProvider } from './LocalStackProvider';
