@@ -16,10 +16,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+          registry-url: 'https://npm.pkg.github.com'       
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}    
       - name: Install dependencies
-        run: npm ci
+        run: npm ci      
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}
         run: npx semantic-release
